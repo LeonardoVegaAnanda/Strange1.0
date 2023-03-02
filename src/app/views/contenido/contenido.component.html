@@ -1,0 +1,77 @@
+<!--Buscar Registros-->
+<button type="button" class="btn btnBuscar" (click)="open(item)">
+  <mat-icon style="width: 80%;">search</mat-icon> Buscar Item
+</button>
+<br><br>
+<!--Detalles del producto-->
+<div class="container py-4 my-4 mx-auto d-flex flex-column">
+  <div class="header">
+    <div class="row r1">
+      <!--Descripcion-->
+      <div class="col-md-9 abc">
+      </div>
+      <div class="col-md-3 text-right pqr"><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+          class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+    </div>
+  </div>
+  <!--Datos-->
+  <div class="container-body mt-2 ">
+      <div class="row r4 border-pink" style="left: 80px;" *ngIf="panel">
+          <div class="col-md-5 p-0 klo">
+              <ul>
+                  <li><h3>Codigo del Articulo:</h3> {{itemData?.itemCode}}</li>
+                  <li><h3>Nombre del articulo:</h3> {{itemData?.itemName}}</li>
+                  <li><h3>Stock SAP</h3> {{itemData?.QuantityOnStock}}</li>
+                  <li><h3>Codigo de Barras:</h3> {{itemData?.barCode}}</li>
+                  <li><h3>Peso:</h3> {{itemData?.salesUnitWeight}}</li>
+                  <li><h3>Clasificacion:</h3> {{itemData?.u_codigo}}</li>
+                  <li><h3>Ubicaciones</h3> </li>
+                  <li *ngFor="let ubicacion of itemData.ubicaciones" class="ubicacion">
+                    <h5>Cantidad:</h5> {{ubicacion?.cantidad}}
+                    <h5>Ubicacion:</h5> {{ubicacion?.ubicacion}}
+                  </li>
+              </ul>
+          </div>
+          <!--Imagen-->
+          <div class="col-md-7"> <img src="{{cadenaImg}}" width="100%" height="100%"> </div>
+      </div>
+  </div>
+</div>
+
+<!--Modal Buscar-->
+<ng-template #item let-modal>
+  <!--Cabecera-->
+  <form (ngSubmit)=" buscarUbicaciones()">
+    <div class="modal-header fondo-cabecera">
+      <h4 class="modal-title">Buscar ubicaciones codigo</h4>
+      <button class="btn close" aria-label="close" type="button" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <!--Cuerpo-->
+    <div class="modal-body fondo-modal">
+      <div class="col">
+        <p>Digite el codigo del articulo</p>
+        <p>
+          <br>
+          <mat-form-field class="full-size" appearance="outline">
+            <mat-label>Codigo</mat-label>
+            <input matInput name="itemCode" [(ngModel)]="itemCode" name="itemCode">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-label>Store</mat-label>&nbsp;
+          <input type="radio" name="almacen" id="store" value="store" [(ngModel)]="almacen">
+          &nbsp;&nbsp;
+          <mat-label>Mayoreo</mat-label>&nbsp;
+          <input type="radio" name="almacen" id="mayoreo" value="mayoreo" >
+        </p>
+      </div>
+    </div>
+    <!--Pie-->
+    <div class="modal-footer">
+      <button type="submit" class="btn btnAgregar">Buscar</button>
+      <button type="button" class="btn btnDetalles btnCerrar" (click)="modal.close()">Cerrar</button>
+    </div>
+  </form>
+</ng-template>
