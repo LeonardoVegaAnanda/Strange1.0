@@ -212,10 +212,11 @@ li {
 }
 .btnAgregar:hover{
     background-color: #3CC3C8;
-    color: #fff;
+    color: #fff; 
   }
 .border-pink{
   border: 1px solid #C81E6E; 
+  left: 200px;
 }
 .ubicacion{
   border: 0.5px solid #3CC3C8;

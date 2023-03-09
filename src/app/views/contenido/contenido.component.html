@@ -15,25 +15,27 @@
     </div>
   </div>
   <!--Datos-->
-  <div class="container-body mt-2 ">
-      <div class="row r4 border-pink" style="left: 80px;" *ngIf="panel">
+  <div class="container-body mt-1">
+      <div class="row r4 border-pink" >
           <div class="col-md-5 p-0 klo">
               <ul>
                   <li><h3>Codigo del Articulo:</h3> {{itemData?.itemCode}}</li>
                   <li><h3>Nombre del articulo:</h3> {{itemData?.itemName}}</li>
-                  <li><h3>Stock SAP</h3> {{itemData?.QuantityOnStock}}</li>
-                  <li><h3>Codigo de Barras:</h3> {{itemData?.barCode}}</li>
-                  <li><h3>Peso:</h3> {{itemData?.salesUnitWeight}}</li>
+                  <li><h3>Codigo de Barras:</h3> {{itemData?.codeBars}}</li>
+                  <li><h3>Peso:</h3> {{itemData?.sWeight1}}</li>
+                  <li><h3>Codigo de Grupo:</h3> {{itemData?.itmsGrpCod}}</li>
                   <li><h3>Clasificacion:</h3> {{itemData?.u_codigo}}</li>
                   <li><h3>Ubicaciones</h3> </li>
                   <li *ngFor="let ubicacion of itemData.ubicaciones" class="ubicacion">
-                    <h5>Cantidad:</h5> {{ubicacion?.cantidad}}
-                    <h5>Ubicacion:</h5> {{ubicacion?.ubicacion}}
+                    <h5>Cantidad Ubicacion:</h5> {{ubicacion?.stockUbicacion}}
+                    <h5>Ubicacion:</h5> {{ubicacion?.binCode}}
+                    <h5>Almacen: </h5>{{ubicacion?.whsCode}}
+                    <h5>Cantidad Almacen: </h5>{{ubicacion?.totalStockAlmacen}}
                   </li>
               </ul>
           </div>
           <!--Imagen-->
-          <div class="col-md-7"> <img src="{{cadenaImg}}" width="100%" height="100%"> </div>
+          <div class="col-md-7"> <img src="{{cadenaImg}}" width="100%" height="50%"> </div>
       </div>
   </div>
 </div>
@@ -58,13 +60,6 @@
             <mat-label>Codigo</mat-label>
             <input matInput name="itemCode" [(ngModel)]="itemCode" name="itemCode">
           </mat-form-field>
-        </p>
-        <p>
-          <mat-label>Store</mat-label>&nbsp;
-          <input type="radio" name="almacen" id="store" value="store" [(ngModel)]="almacen">
-          &nbsp;&nbsp;
-          <mat-label>Mayoreo</mat-label>&nbsp;
-          <input type="radio" name="almacen" id="mayoreo" value="mayoreo" >
         </p>
       </div>
     </div>

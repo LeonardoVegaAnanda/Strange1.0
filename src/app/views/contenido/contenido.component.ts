@@ -16,12 +16,12 @@ export class ContenidoComponent implements OnInit{
   itemData:any={
     itemCode:'',
     itemName:'',
-    salesUnitWeight:'',
-    barCode:'',
-    u_codigo:'',
-    QuantityOnStock:'',
-    ubicaciones:[],
-    }
+    CodeBars:'',
+    SWeight1:'',
+    ItmsGrpCod:'',
+    U_codigo:'',
+    ubicaciones:[]
+  };
   cadenaImg?:string;
 
   panel:boolean=false;
@@ -35,9 +35,9 @@ export class ContenidoComponent implements OnInit{
     this.modal.open(item)
   }
   buscarUbicaciones(){
-    if(this.almacen == 'store'){
-      this.api.buscarProductoStore(this.itemCode).subscribe(
+      this.api.buscarProducto(this.itemCode).subscribe(
         (data) =>{
+          console.log(data);
           Swal.fire("Producto","Exito al Traer el producto del almacen de store","success");
           this.itemData = data;
           this.cadenaImg =  "http://104.36.166.251:5757/fotos_productos/"+this.itemCode+".jpg";
@@ -49,22 +49,5 @@ export class ContenidoComponent implements OnInit{
         }
       );
     }
-    else if(this.almacen == 'mayoreo'){
-      this.api.buscarProductoMayoreo(this.itemCode).subscribe(
-        (data) =>{
-          Swal.fire("Producto","Exito al Traer el producto del almacen de mayoreo","success");
-          this.itemData = data;
-          this.cadenaImg =  "http://104.36.166.251:5757/fotos_productos/"+this.itemCode+".jpg";
-          this.panel=true;
-          this.modal.dismissAll();
-        },
-        (error) =>{
-          console.log(error);
-        }
-      );
-    }
-    else{
-      Swal.fire("Error","Favor de escoger el almacen a buscar","warning")
-    }
      }
-}
+
